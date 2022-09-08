@@ -10,7 +10,7 @@
   font-size: 14px;
   padding: 0 10px 10px;
   border-radius: 10px;
-  border-bottom: 1px solid salmon;
+  border-bottom: 1px solid rgb(0, 255, 229);
 }
 .nameText:not(:last-child) {
   margin-bottom: 20px;

@@ -1,24 +1,20 @@
 .wrapper {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    padding: 50px 0;
-  }
-  
-  .title {
-    font-size: 50px;
-    margin-bottom: 30px;
-  }
-  
-  .description {
-    font-size: 30px;
-  }
-  
-  .phone {
-    margin-bottom: 50px;
-  }
-  
-  .link:hover {
-    color: rgb(255, 121, 106);
-  }
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 50px 0;
+}
+.title {
+  font-size: 50px;
+  margin-bottom: 30px;
+}
+.description {
+   font-size: 30px;
+}
+.phone {
+  margin-bottom: 50px;
+}
+.link:hover {
+  color: rgb(0, 255, 229);
+}
