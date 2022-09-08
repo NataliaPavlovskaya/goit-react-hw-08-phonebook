@@ -42,25 +42,38 @@ export default function App() {
           }
         >
             <Routes>
-            <Route path="/" exact component={HomeView} />
-            </Routes>
-            <PublicRoute
-              path="/login"
-              redirectTo="/contacts"
-              restricted
-              component={LoginView}
+            <Route path="/" component={<HomeView />} />
+            <Route
+              path="/login/*"
+              element={
+                <PublicRoute
+                  path="/login"
+                  redirectTo="/contacts"
+                  restricted
+                  component={<LoginView />}
+                />
+              }
             />
-            <PublicRoute
-              path="/register"
-              redirectTo="/contacts"
-              restricted
-              component={RegisterView}
+            <Route
+              path="/register/*"
+              element={
+                <PublicRoute
+                  redirectTo="/contacts"
+                  restricted
+                  component={<RegisterView />}
+                />
+              }
             />
-            <PrivateRoute
+            <Route
               path="/contacts"
-              component={ContactsView}
-              redirectTo="/login"
+              element={
+                <PrivateRoute
+                  component={<ContactsView />}
+                  redirectTo="/login"
+                />
+              }
             />
+          </Routes>
         </Suspense>
       </Container>
     </>

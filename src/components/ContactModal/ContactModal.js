@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { editContacts } from '../../redux/contacts/contacts-operations';
-import s from './ContactModal.module.css';
+import styles from './ContactModal.module.css';
 import { FaRegWindowClose } from 'react-icons/fa';
 
 export default function ContactModal({ contactData, onCloseModal }) {
@@ -39,16 +39,16 @@ export default function ContactModal({ contactData, onCloseModal }) {
   };
 
   return (
-    <div className={s.overlay} onClick={e => handleBackDropClick(e)}>
-      <div className={s.modal}>
+    <div className={styles.overlay} onClick={e => handleBackDropClick(e)}>
+      <div className={styles.modal}>
         <button
-          className={s.close}
+          className={styles.close}
           type="button"
           onClick={() => onCloseModal(false)}
         >
-          <FaRegWindowClose size="30" className={s.closeIcon} />
+          <FaRegWindowClose size="30" className={styles.closeIcon} />
         </button>
-        <form className={s.form}>
+        <form className={styles.form}>
           <div className="inputWrapper">
             <label htmlFor="editName"></label>
             <input

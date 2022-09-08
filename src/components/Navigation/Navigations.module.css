@@ -9,18 +9,18 @@
     border-radius: 5px;
   }
   
-  .link:hover {
+.link:hover {
     color: #fa8072;
   }
   
-  .nav {
+.nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
     width: 120px;
     margin-right: 10px;
   }
-  .button {
+.button {
     background-color: transparent;
     border: none;
     color: #ffffff;

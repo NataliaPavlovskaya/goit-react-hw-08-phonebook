@@ -11,8 +11,7 @@ export default function HomeView() {
           <h1 className={s.title}>Добро пожаловать!</h1>
           <NavLink className={s.link} to="/register"/>
           <p className={s.description}>
-            Это приложение для записи и хранения телефонных номеров ваших друзей
-            и знакомых
+            Приложение для записи и хранения телефонных номеров ваших друзей
           </p>
         </div>
       </Section>
