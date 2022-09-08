@@ -1,30 +1,57 @@
 import axios from 'axios';
-import {addContactsRequest,addContactsSuccess,addContactsError,deleteContactsRequest,deleteContactsSuccess,deleteContactsError,fetchContactsRequest,fetchContactsSuccess,fetchContactsError} from './contacts-actions';
-// import * as contactsApi from '../../services/api'
-axios.defaults.baseURL = 'https://6304d5d394b8c58fd7263365.mockapi.io/';
+import contactsActions from './contacts-actions';
+import { infoNotify, warnNotify } from '../../services/tostify';
 
-export const fetchContacts = () => dispatch => {
-  dispatch(fetchContactsRequest());
-  axios
-    .get('/contacts')
-    .then(({ data }) => dispatch(fetchContactsSuccess(data)))
-    .catch(error => dispatch(fetchContactsError(error)));
+export const fetchContacts = () => async dispatch => {
+  dispatch(contactsActions.fetchContactsRequest());
+
+  try {
+    const { data } = await axios.get('/contacts');
+
+    dispatch(contactsActions.fetchContactsSuccess(data));
+  } catch (error) {
+    dispatch(contactsActions.fetchContactsError(error.massage));
+    warnNotify(error.message);
+  }
 };
 
-export const addContact = (name, phone) => dispatch => {
-  const contact = { name, phone };
+export const addContact = (name, number) => async dispatch => {
+  const contact = { name, number };
+  dispatch(contactsActions.addContactsRequest());
+  infoNotify('Запись добавлена');
 
-  dispatch(addContactsRequest());
-  axios
-    .post('/contacts', contact)
-    .then(({ data }) => dispatch(addContactsSuccess(data)))
-    .catch(error => dispatch(addContactsError(error)));
+  try {
+    const { data } = await axios.post('/contacts', contact);
+
+    dispatch(contactsActions.addContactsSuccess(data));
+  } catch (error) {
+    dispatch(contactsActions.addContactsError(error.massage));
+    warnNotify(error.message);
+  }
 };
 
-export const deleteContacts = id => dispatch => {
-  dispatch(deleteContactsRequest());
-  axios
-    .delete(`/contacts/${id}`)
-    .then(() => dispatch(deleteContactsSuccess(id)))
-    .catch(error => dispatch(deleteContactsError(error)));
+export const deleteContacts = id => async dispatch => {
+  dispatch(contactsActions.deleteContactsRequest());
+
+  try {
+    await axios.delete(`/contacts/${id}`);
+
+    dispatch(contactsActions.deleteContactsSuccess(id));
+  } catch (error) {
+    dispatch(contactsActions.deleteContactsError(error.massage));
+    warnNotify(error.message);
+  }
+};
+
+export const editContacts = (id, update) => async dispatch => {
+  dispatch(contactsActions.editContactsRequest());
+
+  try {
+    const { data } = await axios.patch(`/contacts/${id}`, update);
+    console.log(data);
+    dispatch(contactsActions.editContactsSuccess(data));
+  } catch (error) {
+    dispatch(contactsActions.editContactsError(error.massage));
+    warnNotify(error.message);
+  }
 };

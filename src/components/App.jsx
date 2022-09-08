@@ -1,34 +1,34 @@
-import { useEffect } from 'react';
-import { connect } from 'react-redux';
-
-import { useSelector, useDispatch } from 'react-redux';
-import { fetchContacts } from '../redux/contacts/contacts-operations';
-import { getContacts, getIsLoading } from '../redux/contacts/contacts-selectors';
+import {Route, Routes } from 'react-router-dom';
+import React, { Suspense, useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import AppBar from './Navigation/AppBar';
+import authOperations from '../redux/auth/auth-operations';
+import PrivateRoute from './PrivateRoute/PrivateRoute';
+import PublicRoute from './PublicRoute/PublicRoute';
 import {Oval} from 'react-loader-spinner';
+import Container from './Layout/Container';
+import '../services/tostify';
 
-import Layout from './Layout/Layout';
-import Section from './Layout/Section';
-import ContactForm from './ContactForm/ContactForm';
-import ContactsList from './ContactList/ContactList';
-import Filter from './Filter/Filter';
+const HomeView = React.lazy(() => import('../views/HomeView'));
+const ContactsView = React.lazy(() => import('../views/ContactsView'));
+const LoginView = React.lazy(() => import('../views/LoginView'));
+const RegisterView = React.lazy(() => import('../views/RegisterView'));
 
-function App() {
-  const contacts = useSelector(getContacts);
+export default function App() {
   const dispatch = useDispatch();
-  const isLoading = useSelector(getIsLoading);
 
   useEffect(() => {
-    dispatch(fetchContacts());
+    dispatch(authOperations.getCurrentUser());
   }, [dispatch]);
 
   return (
-    <Layout>
-      <Section title="Phonebook">
-        <ContactForm />
-      </Section>
-
-      {isLoading ? (
-        <Oval height={40}
+    <>
+      <Container>
+        <AppBar />
+        <Suspense
+          fallback={
+            <div style={{ display: 'flex', justifyContent: 'center' }}>
+              <Oval height={40}
               width={40}
               color="#4fa94d"
               wrapperStyle={{}}
@@ -38,20 +38,31 @@ function App() {
               secondaryColor="#4fa94d"
               strokeWidth={2}
               strokeWidthSecondary={2} />
-      ) : null}
-
-      {contacts.length ? (
-        <Section title="Contacts">
-          <Filter />
-          <ContactsList />
-        </Section>
-      ) : null}
-    </Layout>
+            </div>
+          }
+        >
+            <Routes>
+            <Route path="/" exact component={HomeView} />
+            </Routes>
+            <PublicRoute
+              path="/login"
+              redirectTo="/contacts"
+              restricted
+              component={LoginView}
+            />
+            <PublicRoute
+              path="/register"
+              redirectTo="/contacts"
+              restricted
+              component={RegisterView}
+            />
+            <PrivateRoute
+              path="/contacts"
+              component={ContactsView}
+              redirectTo="/login"
+            />
+        </Suspense>
+      </Container>
+    </>
   );
 }
-
-const mapStateToProps = state => ({
-  contacts: state.contacts,
-});
-
-export default connect(mapStateToProps)(App);
