@@ -1,5 +1,5 @@
 import { useSelector } from 'react-redux';
-import { Route, Navigate } from 'react-router-dom';
+import { Route, Routes, Navigate } from 'react-router-dom';
 import { getIsAuthenticated } from '../../redux/auth/auth-selectors';
 
 export default function PrivateRoute({
@@ -10,6 +10,7 @@ export default function PrivateRoute({
   const isAuthenticated = useSelector(getIsAuthenticated);
 
   return (
+    <Routes>
     <Route
       {...routeProps}
       render={props =>
@@ -20,5 +21,6 @@ export default function PrivateRoute({
         )
       }
     />
+    </Routes>
   );
 }
