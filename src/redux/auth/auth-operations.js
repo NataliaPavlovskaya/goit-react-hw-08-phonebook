@@ -35,7 +35,7 @@ const logIn = credentials => async dispatch => {
 
     token.set(data.token);
     dispatch(authActions.logInSuccess(data));
-    infoNotify('Добро пожаловать');
+    infoNotify('Ласкаво просимо');
   } catch (error) {
     dispatch(authActions.logInError(error.message));
     warnNotify(error.message);
@@ -74,7 +74,6 @@ const getCurrentUser = () => async (dispatch, getState) => {
     dispatch(authActions.getCurrentUserSuccess(data));
   } catch (error) {
     dispatch(authActions.getCurrentUserError(error.message));
-    // warnNotify(error.message);
   }
 };
 

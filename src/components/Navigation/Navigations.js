@@ -16,7 +16,7 @@ export default function Navigations() {
       </NavLink>
       {isAuthenticated && (
         <NavLink className={styles.link} to="/contacts">
-          {screenWidth <= 767 ? <ImListNumbered /> : 'Контакты'}
+          {screenWidth <= 767 ? <ImListNumbered /> : 'Контакти'}
         </NavLink>
       )}
     </nav>

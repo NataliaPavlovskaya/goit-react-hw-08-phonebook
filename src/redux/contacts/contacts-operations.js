@@ -18,7 +18,7 @@ export const fetchContacts = () => async dispatch => {
 export const addContact = (name, number) => async dispatch => {
   const contact = { name, number };
   dispatch(contactsActions.addContactsRequest());
-  infoNotify('Запись добавлена');
+  infoNotify('Запис додано');
 
   try {
     const { data } = await axios.post('/contacts', contact);

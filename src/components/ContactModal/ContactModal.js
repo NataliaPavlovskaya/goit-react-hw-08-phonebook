@@ -75,7 +75,7 @@ export default function ContactModal({ contactData, onCloseModal }) {
           </div>
 
           <button className="button" type="button" onClick={handleSave}>
-            Сохранить
+            Зберегти
           </button>
         </form>
       </div>

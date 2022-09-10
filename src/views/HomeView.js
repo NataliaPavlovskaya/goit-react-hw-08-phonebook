@@ -8,10 +8,10 @@ export default function HomeView() {
     <Container>
       <Section className={styles.section}>
         <div className={styles.wrapper}>
-          <h1 className={styles.title}>Добро пожаловать!</h1>
+          <h1 className={styles.title}>Ласкаво просимо!</h1>
           <NavLink className={styles.link} to="/register"/>
           <p className={styles.description}>
-            Приложение для записи и хранения телефонных номеров ваших друзей
+          Додаток для запису та зберігання телефонних номерів ваших друзів
           </p>
         </div>
       </Section>

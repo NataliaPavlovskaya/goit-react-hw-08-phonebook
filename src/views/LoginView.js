@@ -15,13 +15,11 @@ export default function LoginViews() {
   };
 
   return (
-    <Section title="Вход в аккаунт">
+    <Section title="Вхід до облікового запису">
       <div className="wrapper">
         <form className="form">
           <div className="inputWrapper">
-            <label className="label" htmlFor="email">
-              {/* email */}
-            </label>
+            <label className="label" htmlFor="email"></label>
             <input
               className="input"
               type="email"
@@ -33,9 +31,7 @@ export default function LoginViews() {
             />
           </div>
           <div className="inputWrapper">
-            <label className="label" htmlFor="password">
-              {/* пароль */}
-            </label>
+            <label className="label" htmlFor="password"></label>
             <input
               className="input"
               type="password"
@@ -50,9 +46,8 @@ export default function LoginViews() {
           <button
             className="button"
             type="submit"
-            onClick={e => handleSubmit(e)}
-          >
-            Войти
+            onClick={e => handleSubmit(e)}>
+            Увійти
           </button>
         </form>
       </div>

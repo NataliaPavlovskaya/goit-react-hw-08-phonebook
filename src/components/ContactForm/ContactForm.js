@@ -33,7 +33,7 @@ export default function ContactsForm() {
             name="name"
             id="name"
             value={name}
-            placeholder="имя"
+            placeholder="ім'я"
             onChange={e => setName(e.target.value)}
           />
           <label
@@ -57,7 +57,7 @@ export default function ContactsForm() {
           />
         </div>
         <button className="button" type="submit" disabled={!(name && number)}>
-          Добавить
+          Додати
         </button>
       </form>
     </>

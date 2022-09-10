@@ -15,7 +15,7 @@ export default function RegisterView() {
     e.preventDefault();
 
     if (password !== checkPass) {
-      warnNotify('Пароли не совпадают');
+      warnNotify('Паролі не співпадають');
       return;
     }
 
@@ -29,7 +29,7 @@ export default function RegisterView() {
   };
 
   return (
-    <Section title="Заполните форму">
+    <Section title="Заповніть форму">
       <form className="form">
         <div className="inputWrapper">
           <label className="label" htmlFor="name"></label>
@@ -39,7 +39,7 @@ export default function RegisterView() {
             name="Name"
             id="name"
             value={name}
-            placeholder="имя"
+            placeholder="ім'я"
             onChange={({ target: { value } }) => setName(value)}
           />
         </div>
@@ -75,12 +75,12 @@ export default function RegisterView() {
             name="checkPassword"
             id="checkPassword"
             value={checkPass}
-            placeholder="подтвердите пароль"
+            placeholder="підтвердіть пароль"
             onChange={({ target: { value } }) => setCheckPass(value)}
           />
         </div>
         <button className="button" type="submit" onClick={e => handleSubmit(e)}>
-          Регистрация
+          Реєстрація
         </button>
       </form>
     </Section>

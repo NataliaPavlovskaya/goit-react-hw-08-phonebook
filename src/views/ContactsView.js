@@ -29,7 +29,7 @@ export default function ContactsView() {
   }, [dispatch]);
 
   return (
-    <Section title="Введите имя и номер">
+    <Section title="Введіть ім'я та номер ">
       <div style={{ display: 'flex', justifyContent: 'center' }}>
         {isLoading ? (
           <Oval height={40}
@@ -48,7 +48,7 @@ export default function ContactsView() {
       <ContactForm />
 
       {contacts.length ? (
-        <Section title="Контакты">
+        <Section title="Контакти">
           <Filter />
           <ContactsList onOpenModal={handleOpenModal} />
           {isOpenModal && (

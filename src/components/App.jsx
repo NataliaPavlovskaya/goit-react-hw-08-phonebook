@@ -24,7 +24,7 @@ export default function App() {
   return (
     <>
       <Container>
-        <AppBar />
+        <AppBar/>
         <Suspense
           fallback={
             <div style={{ display: 'flex', justifyContent: 'center' }}>
@@ -38,31 +38,26 @@ export default function App() {
               secondaryColor="#4fa94d"
               strokeWidth={2}
               strokeWidthSecondary={2} />
-            </div>
-          }
-        >
+            </div>}>
             <Routes>
             <Route path="/" component={<HomeView />} />
             <Route
-              path="/login/*"
+              path="/login"
               element={
                 <PublicRoute
                   path="/login"
                   redirectTo="/contacts"
                   restricted
-                  component={<LoginView />}
-                />
-              }
-            />
+                  component={<LoginView />}/>}
+                  />
             <Route
-              path="/register/*"
+              path="/register"
               element={
                 <PublicRoute
                   redirectTo="/contacts"
                   restricted
                   component={<RegisterView />}
-                />
-              }
+                />}
             />
             <Route
               path="/contacts"
@@ -70,8 +65,7 @@ export default function App() {
                 <PrivateRoute
                   component={<ContactsView />}
                   redirectTo="/login"
-                />
-              }
+                />}
             />
           </Routes>
         </Suspense>

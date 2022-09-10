@@ -21,7 +21,7 @@ export default function Filter() {
           value={filter}
           type="text"
           id="filter"
-          placeholder="find a contact by name"
+          placeholder="Знайти контакт за ім'ям"
           onChange={e => dispatch(contactsActions.changeFilter(e.target.value))}
         />
       </div>
