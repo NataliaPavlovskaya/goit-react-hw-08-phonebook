@@ -2,7 +2,7 @@ import axios from 'axios';
 import authActions from './auth-actions';
 import { infoNotify, warnNotify } from '../../services/tostify';
 
-axios.defaults.baseURL = 'https://connections-api.herokuapp.com';
+axios.defaults.baseURL = 'https://goit-react-hw-08-phonebook-api.herokuapp.com';
 
 const token = {
   set(token) {
