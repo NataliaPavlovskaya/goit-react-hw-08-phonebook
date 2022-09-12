@@ -1,13 +1,13 @@
 import {Route, Routes } from 'react-router-dom';
-import React, { Suspense, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import AppBar from './Navigation/AppBar';
+import { Layout } from './Layout/Layout';
 import authOperations from '../redux/auth/auth-operations';
 import PrivateRoute from './PrivateRoute/PrivateRoute';
 import PublicRoute from './PublicRoute/PublicRoute';
-import {Oval} from 'react-loader-spinner';
-import Container from './Layout/Container';
 import '../services/tostify';
+import { Suspense } from 'react';
+import {Oval} from 'react-loader-spinner';
 
 const HomeView = React.lazy(() => import('../views/HomeView'));
 const ContactsView = React.lazy(() => import('../views/ContactsView'));
@@ -22,54 +22,52 @@ export default function App() {
   }, [dispatch]);
 
   return (
-    <>
-      <Container>
-        <AppBar/>
-        <Suspense
-          fallback={
+    <Suspense 
+      fallback={
             <div style={{ display: 'flex', justifyContent: 'center' }}>
-              <Oval height={40}
-              width={40}
-              color="#4fa94d"
-              wrapperStyle={{}}
-              wrapperClass=""
-              visible={true}
-              ariaLabel='oval-loading'
-              secondaryColor="#4fa94d"
-              strokeWidth={2}
-              strokeWidthSecondary={2} />
+        <Oval height={40}
+            width={40}
+            color="#4fa94d"
+            wrapperStyle={{}}
+            wrapperClass=""
+            visible={true}
+            ariaLabel='oval-loading'
+            secondaryColor="#4fa94d"
+            strokeWidth={2}
+            strokeWidthSecondary={2} />
             </div>}>
-            <Routes>
-            <Route path="/" component={<HomeView />} />
-            <Route
-              path="/login"
-              element={
-                <PublicRoute
-                  path="/login"
-                  redirectTo="/contacts"
-                  restricted
-                  component={<LoginView />}/>}
-                  />
-            <Route
-              path="/register"
-              element={
-                <PublicRoute
-                  redirectTo="/contacts"
-                  restricted
-                  component={<RegisterView />}
-                />}
-            />
-            <Route
-              path="/contacts"
-              element={
-                <PrivateRoute
-                  component={<ContactsView />}
-                  redirectTo="/login"
-                />}
-            />
-          </Routes>
-        </Suspense>
-      </Container>
-    </>
+    <Routes>
+    <Route path="/" element={<Layout />}>
+      <Route index element={<PublicRoute component={<HomeView />} />} />
+      <Route
+        path="/register"
+        element={
+          <PublicRoute
+            restricted
+            redirectTo="/contacts"
+            component={<RegisterView />}
+          />
+        }
+      />
+      <Route
+        path="/login"
+        element={
+          <PublicRoute
+            restricted
+            redirectTo="/contacts"
+            component={<LoginView />}
+          />
+        }
+      />
+      <Route
+        path="/contacts"
+        element={
+          <PrivateRoute redirectTo="/login" component={<ContactsView />} />
+        }
+      />
+    </Route>
+  </Routes>
+  </Suspense>
+            
   );
 }
